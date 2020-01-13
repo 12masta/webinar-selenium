@@ -1,0 +1,14 @@
+/Users/marcinstanek/Documents/gitrepo/webinar-selenium/bin/Debug/netcoreapp2.2/NUnit3.TestAdapter.dll
+/Users/marcinstanek/Documents/gitrepo/webinar-selenium/bin/Debug/netcoreapp2.2/NUnit3.TestAdapter.pdb
+/Users/marcinstanek/Documents/gitrepo/webinar-selenium/bin/Debug/netcoreapp2.2/nunit.engine.netstandard.dll
+/Users/marcinstanek/Documents/gitrepo/webinar-selenium/bin/Debug/netcoreapp2.2/webinar-selenium.deps.json
+/Users/marcinstanek/Documents/gitrepo/webinar-selenium/bin/Debug/netcoreapp2.2/webinar-selenium.runtimeconfig.json
+/Users/marcinstanek/Documents/gitrepo/webinar-selenium/bin/Debug/netcoreapp2.2/webinar-selenium.runtimeconfig.dev.json
+/Users/marcinstanek/Documents/gitrepo/webinar-selenium/bin/Debug/netcoreapp2.2/webinar-selenium.dll
+/Users/marcinstanek/Documents/gitrepo/webinar-selenium/bin/Debug/netcoreapp2.2/webinar-selenium.pdb
+/Users/marcinstanek/Documents/gitrepo/webinar-selenium/obj/Debug/netcoreapp2.2/webinar-selenium.csprojAssemblyReference.cache
+/Users/marcinstanek/Documents/gitrepo/webinar-selenium/obj/Debug/netcoreapp2.2/webinar-selenium.csproj.CoreCompileInputs.cache
+/Users/marcinstanek/Documents/gitrepo/webinar-selenium/obj/Debug/netcoreapp2.2/webinar-selenium.AssemblyInfoInputs.cache
+/Users/marcinstanek/Documents/gitrepo/webinar-selenium/obj/Debug/netcoreapp2.2/webinar-selenium.AssemblyInfo.cs
+/Users/marcinstanek/Documents/gitrepo/webinar-selenium/obj/Debug/netcoreapp2.2/webinar-selenium.dll
+/Users/marcinstanek/Documents/gitrepo/webinar-selenium/obj/Debug/netcoreapp2.2/webinar-selenium.pdb
