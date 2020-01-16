@@ -8,6 +8,8 @@ namespace TestFramework.Dto
         public string DriverPath { get; set; }
         public string Url { get; set; }
 
+        public int DefaultTimeout { get; set; }
+
         public DriverConfiguration Bind()
         {
             var config = new ConfigurationBuilder()

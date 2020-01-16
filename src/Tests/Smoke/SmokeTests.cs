@@ -1,7 +1,6 @@
 using FluentAssertions;
 using NUnit.Framework;
 using TestFramework.PageObjects.HomePage;
-using Tests;
 
 namespace Tests.Smoke
 {
@@ -15,7 +14,7 @@ namespace Tests.Smoke
                 .Create("");
 
             //then
-            homePage.Url().Should().Be(driverWrapper.BaseUrl);
+            homePage.Url().Should().Be(driverWrapper.BaseUrl + "/");
         }
     }
 }

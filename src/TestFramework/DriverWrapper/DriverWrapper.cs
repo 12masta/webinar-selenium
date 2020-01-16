@@ -11,6 +11,8 @@ namespace TestFramework.DriverWrapper
 
         public string BaseUrl => driverConfiguration.Url;
 
+        public IWebDriver Driver => webDriver;
+
         public DriverWrapper(IWebDriver webDriver, DriverConfiguration driverConfiguration)
         {
             this.webDriver = webDriver;
@@ -42,6 +44,9 @@ namespace TestFramework.DriverWrapper
             return webDriver.Url;
         }
 
-
+        public IWebElement FindElement(By by)
+        {
+            return webDriver.FindElement(by);
+        }
     }
 }
