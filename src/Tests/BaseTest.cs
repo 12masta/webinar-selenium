@@ -19,7 +19,7 @@ namespace Tests
             var driverConfig = new DriverConfiguration()
                 .Bind();
             driverWrapper = new DriverWrapper(new ChromeDriver(driverConfig.DriverPath), driverConfig);
-            wait = new Wait(new WebDriverWait(driverWrapper.Driver, TimeSpan.FromSeconds(driverConfig.DefaultTimeout)));
+            wait = new Wait(new WebDriverWait(driverWrapper.Driver, TimeSpan.FromSeconds(driverConfig.DefaultTimeout)), driverWrapper);
         }
 
         [TearDown]
