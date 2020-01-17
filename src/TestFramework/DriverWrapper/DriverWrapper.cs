@@ -1,6 +1,7 @@
 using System;
 using TestFramework.Dto;
 using OpenQA.Selenium;
+using System.Collections.Generic;
 
 namespace TestFramework.DriverWrapper
 {
@@ -47,6 +48,11 @@ namespace TestFramework.DriverWrapper
         public IWebElement FindElement(By by)
         {
             return webDriver.FindElement(by);
+        }
+
+        public IList<IWebElement> FindElements(By by)
+        {
+            return webDriver.FindElements(by);
         }
     }
 }

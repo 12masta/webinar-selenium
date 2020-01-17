@@ -1,41 +1,49 @@
 using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using TestFramework.DriverWrapper;
+using TestFramework.Element;
 
 namespace TestFramework.Waits
 {
     public class Wait : IWait
     {
         private WebDriverWait webDriverWait;
-        private IDriverWrapper driverWrapper;
+        private IWebElementComposer webElementComposer;
+        private TimeSpan defaultTimeout;
 
-        public Wait(WebDriverWait webDriverWait, IDriverWrapper driverWrapper)
+        public Wait(WebDriverWait webDriverWait, IWebElementComposer webElementComposer)
         {
             this.webDriverWait = webDriverWait;
-            this.driverWrapper = driverWrapper;
+            this.webElementComposer = webElementComposer;
+            defaultTimeout = webDriverWait.Timeout;
+
         }
 
-        public IWait UntilElementIsNotDisplayed(IWebElement loaderWrapper)
+        public IWait UntilElementIsNotDisplayed(IWebElement webElement)
         {
-            webDriverWait.Until(_ => loaderWrapper.Displayed == false);
+            webDriverWait.Until(_ => webElementComposer.IsDisplayed(webElement) == false);
             return this;
         }
 
-        public IWait UntilElementIsNotDisplayed(By loaderBy)
+        public IWait UntilElementIsNotDisplayed(By by)
         {
-            webDriverWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
-            webDriverWait.IgnoreExceptionTypes(typeof(WebDriverTimeoutException));
-            webDriverWait.Timeout = TimeSpan.FromSeconds(3);
-            try
-            {
-                webDriverWait.Until(_ => driverWrapper.FindElement(loaderBy).Displayed == false);
-            }
-            catch (WebDriverTimeoutException)
-            {
-                return this;
-            }
+            webDriverWait.Until(_ => webElementComposer.IsDisplayed(by) == false);
+            return this;
+        }
 
+        public IWait UntilElementIsNotDisplayed(By by, TimeSpan timeSpan)
+        {
+            webDriverWait.Timeout = timeSpan;
+            UntilElementIsNotDisplayed(by);
+            webDriverWait.Timeout = defaultTimeout;
+            return this;
+        }
+
+        public IWait UntilElementIsNotDisplayed(IWebElement webElement, TimeSpan timeSpan)
+        {
+            webDriverWait.Timeout = timeSpan;
+            UntilElementIsNotDisplayed(webElement);
+            webDriverWait.Timeout = defaultTimeout;
             return this;
         }
     }

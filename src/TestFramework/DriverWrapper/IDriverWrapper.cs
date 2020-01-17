@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using OpenQA.Selenium;
 
 namespace TestFramework.DriverWrapper
@@ -12,5 +13,6 @@ namespace TestFramework.DriverWrapper
         string Url();
         void Dispose();
         IWebElement FindElement(By by);
+        IList<IWebElement> FindElements(By by);
     }
 }

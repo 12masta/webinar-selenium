@@ -1,4 +1,5 @@
 using TestFramework.DriverWrapper;
+using TestFramework.Element;
 using TestFramework.Waits;
 
 namespace Tests.DynamicConstrolsPage
@@ -7,13 +8,15 @@ namespace Tests.DynamicConstrolsPage
     {
         private IDriverWrapper driverWrapper;
         private IWait wait;
+        private IWebElementComposer webElementComposer;
 
         private bool safeLoad = true;
 
-        public DynamicConstrolsPageFactory(IDriverWrapper driverWrapper, IWait wait)
+        public DynamicConstrolsPageFactory(IDriverWrapper driverWrapper, IWait wait, IWebElementComposer webElementComposer)
         {
             this.driverWrapper = driverWrapper;
             this.wait = wait;
+            this.webElementComposer = webElementComposer;
         }
 
         public DynamicConstrolsPageFactory UnsafeLoad()
@@ -26,14 +29,14 @@ namespace Tests.DynamicConstrolsPage
         {
             if (safeLoad)
             {
-                return new DynamicConstrolsPage(driverWrapper, wait);
+                return new DynamicConstrolsPage(driverWrapper, wait, webElementComposer);
             }
 
             if (!safeLoad)
             {
-                return new DynamicConstrolsPage(driverWrapper, wait, safeLoad);
+                return new DynamicConstrolsPage(driverWrapper, wait, webElementComposer, safeLoad);
             }
-            return new DynamicConstrolsPage(driverWrapper, wait);
+            return new DynamicConstrolsPage(driverWrapper, wait, webElementComposer);
 
         }
 
@@ -41,15 +44,15 @@ namespace Tests.DynamicConstrolsPage
         {
             if (safeLoad)
             {
-                return new DynamicConstrolsPage(driverWrapper, wait, path);
+                return new DynamicConstrolsPage(driverWrapper, wait, webElementComposer, path);
             }
 
             if (!safeLoad)
             {
-                return new DynamicConstrolsPage(driverWrapper, wait, path, safeLoad);
+                return new DynamicConstrolsPage(driverWrapper, wait, webElementComposer, path, safeLoad);
             }
 
-            return new DynamicConstrolsPage(driverWrapper, wait, path);
+            return new DynamicConstrolsPage(driverWrapper, wait, webElementComposer, path);
         }
     }
 }

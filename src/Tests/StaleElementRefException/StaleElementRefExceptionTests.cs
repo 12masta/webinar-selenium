@@ -36,7 +36,7 @@ namespace Tests.StaleElementRefException
         public void StaleElementRefExceptionPassing()
         {
             //when
-            var dynamicControlsPage = new DynamicConstrolsPageFactory(driverWrapper, wait)
+            var dynamicControlsPage = new DynamicConstrolsPageFactory(driverWrapper, wait, webElementComposer)
                 .Create("/dynamic_controls")
                 .CheckCheckbox()
                 .ClickRemove()

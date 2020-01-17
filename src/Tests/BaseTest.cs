@@ -5,6 +5,8 @@ using OpenQA.Selenium.Chrome;
 using TestFramework.Waits;
 using OpenQA.Selenium.Support.UI;
 using System;
+using TestFramework.Element;
+using TestFramework.Highliters;
 
 namespace Tests
 {
@@ -12,6 +14,8 @@ namespace Tests
     {
         protected IDriverWrapper driverWrapper;
         protected IWait wait;
+        protected IWebElementComposer webElementComposer;
+        protected IHighliter highliter;
 
         [SetUp]
         public void Setup()
@@ -19,7 +23,9 @@ namespace Tests
             var driverConfig = new DriverConfiguration()
                 .Bind();
             driverWrapper = new DriverWrapper(new ChromeDriver(driverConfig.DriverPath), driverConfig);
-            wait = new Wait(new WebDriverWait(driverWrapper.Driver, TimeSpan.FromSeconds(driverConfig.DefaultTimeout)), driverWrapper);
+            highliter = new Highliter(driverWrapper);
+            webElementComposer = new WebElementComposer(driverWrapper, highliter);
+            wait = new Wait(new WebDriverWait(driverWrapper.Driver, TimeSpan.FromSeconds(driverConfig.DefaultTimeout)), webElementComposer);
         }
 
         [TearDown]

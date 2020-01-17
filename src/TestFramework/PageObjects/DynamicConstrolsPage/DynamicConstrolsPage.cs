@@ -1,5 +1,7 @@
+using System;
 using OpenQA.Selenium;
 using TestFramework.DriverWrapper;
+using TestFramework.Element;
 using TestFramework.PageObjects;
 using TestFramework.Waits;
 
@@ -40,34 +42,44 @@ namespace Tests.DynamicConstrolsPage
         }
 
         private IWait wait;
+        private IWebElementComposer webElementComposer;
 
-        public DynamicConstrolsPage(IDriverWrapper driverWrapper, IWait wait, bool safeLoad = true) : base(driverWrapper)
+        public DynamicConstrolsPage(IDriverWrapper driverWrapper,
+                                    IWait wait,
+                                    IWebElementComposer webElementComposer,
+                                    bool safeLoad = true) : base(driverWrapper)
         {
             this.wait = wait;
+            this.webElementComposer = webElementComposer;
         }
 
-        public DynamicConstrolsPage(IDriverWrapper driverWrapper, IWait wait, string path, bool safeLoad = true) : base(driverWrapper, path)
+        public DynamicConstrolsPage(IDriverWrapper driverWrapper,
+                                    IWait wait,
+                                    IWebElementComposer webElementComposer,
+                                    string path,
+                                    bool safeLoad = true) : base(driverWrapper, path)
         {
             this.wait = wait;
+            this.webElementComposer = webElementComposer;
         }
 
         public IDynamicConstrolsPage ClickRemove()
         {
-            wait.UntilElementIsNotDisplayed(LoaderBy);
+            wait.UntilElementIsNotDisplayed(LoaderBy, TimeSpan.FromSeconds(10));
             RemoveAddButton.Click();
             return this;
         }
 
         public IDynamicConstrolsPage ClickAdd()
         {
-            wait.UntilElementIsNotDisplayed(LoaderBy);
+            wait.UntilElementIsNotDisplayed(LoaderBy, TimeSpan.FromSeconds(10));
             RemoveAddButton.Click();
             return this;
         }
 
         public IDynamicConstrolsPage CheckCheckbox()
         {
-            wait.UntilElementIsNotDisplayed(LoaderBy);
+            wait.UntilElementIsNotDisplayed(LoaderBy, TimeSpan.FromSeconds(10));
             CheckboxInput.Click();
             return this;
         }
