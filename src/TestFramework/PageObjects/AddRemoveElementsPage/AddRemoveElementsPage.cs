@@ -18,7 +18,7 @@ namespace Tests.AddRemoveElementsPage
 
         private IList<IWebElement> RemoveButtons
         {
-            get => driverWrapper.FindElements(By.XPath("//*[@data-automation='delete-button']"));
+            get => driverWrapper.FindElements(By.XPath("//*[contains(@data-automation, 'delete-button')]"));
         }
 
         private IWait wait;

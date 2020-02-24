@@ -1,3 +1,4 @@
+using System;
 using OpenQA.Selenium;
 using TestFramework.DriverWrapper;
 
@@ -6,22 +7,51 @@ namespace TestFramework.Highliters
     public class Highliter : IHighliter
     {
         private IDriverWrapper driverWrapper;
+        private IWebElement lastHighlightedElement;
 
         public Highliter(IDriverWrapper driverWrapper)
         {
             this.driverWrapper = driverWrapper;
         }
 
-        public IHighliter HighlightElement(By by)
+        public IHighliter HighlightElement(IWebElement webElement)
         {
-            var webElement = driverWrapper.FindElement(by);
-            HighlightElement(webElement);
+            UnHighlightElementBase(lastHighlightedElement);
+            HighlightElementBase(webElement);
+            lastHighlightedElement = webElement;
             return this;
         }
 
-        public IHighliter HighlightElement(IWebElement webElement)
+        public IHighliter HighlightElementBase(IWebElement webElement)
         {
-            ((IJavaScriptExecutor)driverWrapper.Driver).ExecuteScript("arguments[0].setAttribute('style','border: 2px solid red;');", webElement);
+            try
+            {
+                ((IJavaScriptExecutor)driverWrapper.Driver).ExecuteScript("arguments[0].setAttribute('style','border: 2px solid red;');", webElement);
+            }
+            catch (Exception)
+            {
+                //some loogging in case of failure
+                return this;
+            }
+
+            return this;
+        }
+
+        public IHighliter UnHighlightElementBase(IWebElement webElement)
+        {
+            if (webElement != null)
+            {
+                try
+                {
+                    ((IJavaScriptExecutor)driverWrapper.Driver).ExecuteScript("arguments[0].setAttribute('style','border: 0px solid red;');", webElement);
+                }
+                catch (Exception)
+                {
+                    //some loogging in case of failure
+                    return this;
+                }
+            }
+
             return this;
         }
     }
